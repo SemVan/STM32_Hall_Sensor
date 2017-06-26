@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="arm-none-eabi-gcc -mcpu=cortex-m3 -mthumb -g2 -nostartfiles -Map=Example_ADC.map -O0 --gc-sections -LC:\Users\Дмитрий\AppData\Roaming\CooCox\CoIDE\configuration\ProgramData\Example_ADC -TC:\Users\Дмитрий\AppData\Roaming\CooCox\CoIDE\configuration\ProgramData\Example_ADC/arm-gcc-link.ld -g">
+      <target file="Example_ADC.elf" lastModified="15ce3bc1a7b">
+         <source file="..\obj\system_stm32f10x.o" lastModified="15ce3ab6d96"/>
+         <source file="..\obj\stm32f10x_rcc.o" lastModified="15ce3ab6f44"/>
+         <source file="..\obj\stm32f10x_tim.o" lastModified="15ce3ab6d4e"/>
+         <source file="..\obj\misc.o" lastModified="15ce3ab7081"/>
+         <source file="..\obj\stm32f10x_adc.o" lastModified="15ce3ab6fc0"/>
+         <source file="..\obj\stm32f10x_usart.o" lastModified="15ce3ab7032"/>
+         <source file="..\obj\printf.o" lastModified="15ce3ab6ece"/>
+         <source file="..\obj\startup_stm32f10x_md.o" lastModified="15ce3ab6dcd"/>
+         <source file="..\obj\stm32f10x_gpio.o" lastModified="15ce3ab6e2b"/>
+         <source file="..\obj\main.o" lastModified="15ce3bc1894"/>
+      </target>
+   </processor>
+</history>
