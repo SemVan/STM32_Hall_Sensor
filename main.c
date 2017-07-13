@@ -10,6 +10,8 @@
 volatile int TimeResult;
 volatile int TimeSec;
 volatile uint8_t TimeState = 0;
+int measurement_result = 0;
+int measurement_counter = 0;
 
 
 void usart_init(void)
@@ -161,12 +163,87 @@ void TIM4_IRQHandler(void)
 {
 	if (TIM_GetITStatus(TIM4, TIM_IT_Update) != RESET)
 	{
-		readNsendADC();
+		if (measurement_counter !=91) {
+			int local_result = ADC_GetConversionValue(ADC1);
+			measurement_result += local_result;
+			measurement_counter++;
+		} else {
+			disable_timer4();
+			char buffer[50] = {'\0'};
+			sprintf(buffer, "%d\r\n", measurement_result);
+			USARTSendOnlyInfo(buffer);
+		}
+
 		TIM_ClearITPendingBit(TIM4, TIM_IT_Update);
 		TimeSec++;
 	}
 }
 
+void TIM3_IRQHandler(void)
+{
+	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
+	{
+		measurement_counter = 0;
+		measurement_result = 0;
+		initialize_timer4();
+		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+
+	}
+}
+
+
+void initialize_timer3() {
+			TIM_TimeBaseInitTypeDef TIMER_InitStructure;
+		    NVIC_InitTypeDef NVIC_InitStructure;
+
+		  	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE); //
+
+		  	TIM_TimeBaseStructInit(&TIMER_InitStructure);
+		    TIMER_InitStructure.TIM_CounterMode = TIM_CounterMode_Up; //
+		    TIMER_InitStructure.TIM_Prescaler = 7200; //
+		    TIMER_InitStructure.TIM_Period = 5000; //  // F=72000000/7200/1000 = 10 раз/сек.
+		    TIM_TimeBaseInit(TIM3, &TIMER_InitStructure);
+		    TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE); //
+		    TIM_Cmd(TIM3, ENABLE);//
+
+		    /* NVIC Configuration */
+		    /* Enable the TIM4_IRQn Interrupt */
+		    NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
+		    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+		    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+		    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+		    NVIC_Init(&NVIC_InitStructure);
+
+}
+
+void initialize_timer4() {
+	// TIMER4
+		    TIM_TimeBaseInitTypeDef TIMER_InitStructure;
+		    NVIC_InitTypeDef NVIC_InitStructure;
+
+		  	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE); //
+
+		  	TIM_TimeBaseStructInit(&TIMER_InitStructure);
+		    TIMER_InitStructure.TIM_CounterMode = TIM_CounterMode_Up; //
+		    TIMER_InitStructure.TIM_Prescaler = 7200; //
+		    TIMER_InitStructure.TIM_Period = 50; //  // F=72000000/7200/1000 = 10 раз/сек.
+		    TIM_TimeBaseInit(TIM4, &TIMER_InitStructure);
+		    TIM_ITConfig(TIM4, TIM_IT_Update, ENABLE); //
+		    TIM_Cmd(TIM4, ENABLE);//
+
+		    /* NVIC Configuration */
+		    /* Enable the TIM4_IRQn Interrupt */
+		    NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
+		    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+		    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+		    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+		    NVIC_Init(&NVIC_InitStructure);
+}
+
+void disable_timer4() {
+	TIM_ITConfig(TIM4, TIM_IT_Update, DISABLE); //
+	TIM_Cmd(TIM4, DISABLE);
+}
 
 void readNsendADC() {
 	char buffer[50] = {'\0'};
@@ -225,28 +302,8 @@ int main(void)
 	ADC_Cmd (ADC1,ENABLE);	//enable ADC1
 	ADC_SoftwareStartConvCmd(ADC1, ENABLE);	// start conversion (will be endless as we are in continuous mode)
 
+	initialize_timer3();
 
-	// TIMER4
-	    TIM_TimeBaseInitTypeDef TIMER_InitStructure;
-	    NVIC_InitTypeDef NVIC_InitStructure;
-
-	  	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4, ENABLE); //
-
-	  	TIM_TimeBaseStructInit(&TIMER_InitStructure);
-	    TIMER_InitStructure.TIM_CounterMode = TIM_CounterMode_Up; //
-	    TIMER_InitStructure.TIM_Prescaler = 7200; //
-	    TIMER_InitStructure.TIM_Period = 1000; //  // F=72000000/7200/10000 = 1 раз/сек.
-	    TIM_TimeBaseInit(TIM4, &TIMER_InitStructure);
-	    TIM_ITConfig(TIM4, TIM_IT_Update, ENABLE); //
-	    TIM_Cmd(TIM4, ENABLE);//
-
-	    /* NVIC Configuration */
-	    /* Enable the TIM4_IRQn Interrupt */
-	    NVIC_InitStructure.NVIC_IRQChannel = TIM4_IRQn;
-	    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-	    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-	    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
-	    NVIC_Init(&NVIC_InitStructure);
 
 
 	while (1)

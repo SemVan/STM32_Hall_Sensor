@@ -29,7 +29,6 @@ Discarded input sections
  .data          0x00000000        0x0 ..\obj\stm32f10x_gpio.o
  .bss           0x00000000        0x0 ..\obj\stm32f10x_gpio.o
  .data          0x00000000        0x0 ..\obj\main.o
- .bss           0x00000000        0x1 ..\obj\main.o
  .text          0x00000000        0x0 c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
  .data          0x00000000        0x0 c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
  .bss           0x00000000        0x0 c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
@@ -48,7 +47,7 @@ Linker script and memory map
 
                 0x20005000                _eram = 0x20005000
 
-.text           0x08000000     0x4fb5
+.text           0x08000000     0x50e5
  *(.isr_vector)
  .isr_vector    0x08000000      0x10c ..\obj\startup_stm32f10x_md.o
                 0x08000000                g_pfnVectors
@@ -292,7 +291,6 @@ Linker script and memory map
                 0x08004594                CAN1_RX1_IRQHandler
                 0x08004594                I2C1_EV_IRQHandler
                 0x08004594                DMA1_Channel6_IRQHandler
-                0x08004594                TIM3_IRQHandler
                 0x08004594                RCC_IRQHandler
                 0x08004594                TIM1_TRG_COM_IRQHandler
                 0x08004594                DMA1_Channel1_IRQHandler
@@ -341,18 +339,22 @@ Linker script and memory map
                 0x08004a0c                GPIO_PinRemapConfig
                 0x08004aec                GPIO_EXTILineConfig
                 0x08004b70                GPIO_ETH_MediaInterfaceConfig
- .text          0x08004b8c      0x308 ..\obj\main.o
+ .text          0x08004b8c      0x438 ..\obj\main.o
                 0x08004b8c                usart_init
                 0x08004c24                USARTSend
                 0x08004c68                USARTSendOnlyInfo
                 0x08004c88                SetSysClockTo72
                 0x08004cf8                TIM4_IRQHandler
-                0x08004d2c                readNsendADC
-                0x08004d6c                main
- .text.memset   0x08004e94       0x9c c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
-                0x08004e94                memset
- .text.strlen   0x08004f30       0x5c c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strlen-stub.o)
-                0x08004f30                strlen
+                0x08004d90                TIM3_IRQHandler
+                0x08004dcc                initialize_timer3
+                0x08004e34                initialize_timer4
+                0x08004e98                disable_timer4
+                0x08004eb8                readNsendADC
+                0x08004ef8                main
+ .text.memset   0x08004fc4       0x9c c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+                0x08004fc4                memset
+ .text.strlen   0x08005060       0x5c c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strlen-stub.o)
+                0x08005060                strlen
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -366,39 +368,39 @@ Linker script and memory map
  *(SORT(.dtors.*))
  *(.dtors)
  *(.rodata*)
- .rodata        0x08004f8c       0x24 ..\obj\printf.o
- .rodata        0x08004fb0        0x5 ..\obj\main.o
+ .rodata        0x080050bc       0x24 ..\obj\printf.o
+ .rodata        0x080050e0        0x5 ..\obj\main.o
  *(.eh_fram e*)
 
-.glue_7         0x08004fb8        0x0
- .glue_7        0x08004fb8        0x0 linker stubs
+.glue_7         0x080050e8        0x0
+ .glue_7        0x080050e8        0x0 linker stubs
 
-.glue_7t        0x08004fb8        0x0
- .glue_7t       0x08004fb8        0x0 linker stubs
+.glue_7t        0x080050e8        0x0
+ .glue_7t       0x080050e8        0x0 linker stubs
 
-.vfp11_veneer   0x08004fb8        0x0
- .vfp11_veneer  0x08004fb8        0x0 linker stubs
+.vfp11_veneer   0x080050e8        0x0
+ .vfp11_veneer  0x080050e8        0x0 linker stubs
 
-.v4_bx          0x08004fb8        0x0
- .v4_bx         0x08004fb8        0x0 linker stubs
+.v4_bx          0x080050e8        0x0
+ .v4_bx         0x080050e8        0x0 linker stubs
 
-.iplt           0x08004fb8        0x0
- .iplt          0x08004fb8        0x0 ..\obj\system_stm32f10x.o
+.iplt           0x080050e8        0x0
+ .iplt          0x080050e8        0x0 ..\obj\system_stm32f10x.o
 
-.rel.dyn        0x08004fb8        0x0
- .rel.iplt      0x08004fb8        0x0 ..\obj\system_stm32f10x.o
+.rel.dyn        0x080050e8        0x0
+ .rel.iplt      0x080050e8        0x0 ..\obj\system_stm32f10x.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08004fb8                __exidx_start = .
+                0x080050e8                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08004fb8                __exidx_end = .
-                0x08004fb8                __etext = .
-                0x08004fb5                _sidata = __etext
+                0x080050e8                __exidx_end = .
+                0x080050e8                __etext = .
+                0x080050e5                _sidata = __etext
 
-.data           0x20000000      0x454 load address 0x08004fb5
+.data           0x20000000      0x454 load address 0x080050e5
                 0x20000000                __data_start__ = .
                 0x20000000                _sdata = __data_start__
  *(vtable)
@@ -429,37 +431,40 @@ Linker script and memory map
                 0x20000454                __data_end__ = .
                 0x20000454                _edata = __data_end__
 
-.igot.plt       0x20000454        0x0 load address 0x0800540c
+.igot.plt       0x20000454        0x0 load address 0x0800553c
  .igot.plt      0x20000454        0x0 ..\obj\system_stm32f10x.o
 
-.bss            0x20000454        0x8 load address 0x0800540c
+.bss            0x20000454       0x14 load address 0x0800553c
                 0x20000454                . = ALIGN (0x4)
                 0x20000454                __bss_start__ = .
                 0x20000454                _sbss = __bss_start__
  *(.bss*)
+ .bss           0x20000454        0xc ..\obj\main.o
+                0x20000454                TimeState
+                0x20000458                measurement_result
+                0x2000045c                measurement_counter
  *(COMMON)
- COMMON         0x20000454        0x8 ..\obj\main.o
-                0x20000454                TimeSec
-                0x20000458                TimeResult
-                0x2000045c                . = ALIGN (0x4)
-                0x2000045c                __bss_end__ = .
-                0x2000045c                _ebss = __bss_end__
+ COMMON         0x20000460        0x8 ..\obj\main.o
+                0x20000460                TimeSec
+                0x20000464                TimeResult
+                0x20000468                . = ALIGN (0x4)
+                0x20000468                __bss_end__ = .
+                0x20000468                _ebss = __bss_end__
 
-.heap           0x2000045c        0x0
-                0x2000045c                __end__ = .
-                0x2000045c                _end = __end__
-                0x2000045c                end = __end__
+.heap           0x20000468        0x0
+                0x20000468                __end__ = .
+                0x20000468                _end = __end__
+                0x20000468                end = __end__
  *(.heap*)
-                0x2000045c                __HeapLimit = .
+                0x20000468                __HeapLimit = .
 
-.co_stack       0x2000045c      0x404 load address 0x08005414
-                0x20000460                . = ALIGN (0x8)
- *fill*         0x2000045c        0x4 
+.co_stack       0x20000468      0x400 load address 0x08005550
+                0x20000468                . = ALIGN (0x8)
  *(.co_stack .co_stack.*)
- .co_stack      0x20000460      0x400 ..\obj\startup_stm32f10x_md.o
-                0x20000460                pulStack
+ .co_stack      0x20000468      0x400 ..\obj\startup_stm32f10x_md.o
+                0x20000468                pulStack
                 0x20005000                __StackTop = (ORIGIN (ram) + LENGTH (ram))
-                0x20004bfc                __StackLimit = (__StackTop - SIZEOF (.co_stack))
+                0x20004c00                __StackLimit = (__StackTop - SIZEOF (.co_stack))
                 [!provide]                PROVIDE (__stack, __StackTop)
                 0x00000001                ASSERT ((__StackLimit >= __HeapLimit), region ram  overflowed with stack)
 LOAD ..\obj\system_stm32f10x.o
@@ -479,7 +484,7 @@ LOAD c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../
 END GROUP
 OUTPUT(Example_ADC.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x6549
+.debug_info     0x00000000     0x6622
  .debug_info    0x00000000      0x47d ..\obj\system_stm32f10x.o
  .debug_info    0x0000047d      0x899 ..\obj\stm32f10x_rcc.o
  .debug_info    0x00000d16     0x1c60 ..\obj\stm32f10x_tim.o
@@ -489,9 +494,9 @@ OUTPUT(Example_ADC.elf elf32-littlearm)
  .debug_info    0x00004423      0xe3f ..\obj\printf.o
  .debug_info    0x00005262       0xe9 ..\obj\startup_stm32f10x_md.o
  .debug_info    0x0000534b      0x6f6 ..\obj\stm32f10x_gpio.o
- .debug_info    0x00005a41      0xb08 ..\obj\main.o
+ .debug_info    0x00005a41      0xbe1 ..\obj\main.o
 
-.debug_abbrev   0x00000000      0xfc4
+.debug_abbrev   0x00000000     0x1007
  .debug_abbrev  0x00000000      0x14e ..\obj\system_stm32f10x.o
  .debug_abbrev  0x0000014e      0x1bc ..\obj\stm32f10x_rcc.o
  .debug_abbrev  0x0000030a      0x1b2 ..\obj\stm32f10x_tim.o
@@ -501,7 +506,7 @@ OUTPUT(Example_ADC.elf elf32-littlearm)
  .debug_abbrev  0x00000901      0x27e ..\obj\printf.o
  .debug_abbrev  0x00000b7f       0xa7 ..\obj\startup_stm32f10x_md.o
  .debug_abbrev  0x00000c26      0x1cc ..\obj\stm32f10x_gpio.o
- .debug_abbrev  0x00000df2      0x1d2 ..\obj\main.o
+ .debug_abbrev  0x00000df2      0x215 ..\obj\main.o
 
 .debug_aranges  0x00000000      0x140
  .debug_aranges
@@ -525,39 +530,39 @@ OUTPUT(Example_ADC.elf elf32-littlearm)
  .debug_aranges
                 0x00000120       0x20 ..\obj\main.o
 
-.debug_line     0x00000000     0x19a6
- .debug_line    0x00000000      0x1a4 ..\obj\system_stm32f10x.o
- .debug_line    0x000001a4      0x2c7 ..\obj\stm32f10x_rcc.o
- .debug_line    0x0000046b      0x643 ..\obj\stm32f10x_tim.o
- .debug_line    0x00000aae      0x19d ..\obj\misc.o
- .debug_line    0x00000c4b      0x2ef ..\obj\stm32f10x_adc.o
- .debug_line    0x00000f3a      0x2d4 ..\obj\stm32f10x_usart.o
- .debug_line    0x0000120e      0x23f ..\obj\printf.o
- .debug_line    0x0000144d       0x87 ..\obj\startup_stm32f10x_md.o
- .debug_line    0x000014d4      0x27e ..\obj\stm32f10x_gpio.o
- .debug_line    0x00001752      0x254 ..\obj\main.o
+.debug_line     0x00000000     0x1a8b
+ .debug_line    0x00000000      0x1b0 ..\obj\system_stm32f10x.o
+ .debug_line    0x000001b0      0x2df ..\obj\stm32f10x_rcc.o
+ .debug_line    0x0000048f      0x65b ..\obj\stm32f10x_tim.o
+ .debug_line    0x00000aea      0x1b5 ..\obj\misc.o
+ .debug_line    0x00000c9f      0x307 ..\obj\stm32f10x_adc.o
+ .debug_line    0x00000fa6      0x2ec ..\obj\stm32f10x_usart.o
+ .debug_line    0x00001292      0x245 ..\obj\printf.o
+ .debug_line    0x000014d7       0x8d ..\obj\startup_stm32f10x_md.o
+ .debug_line    0x00001564      0x296 ..\obj\stm32f10x_gpio.o
+ .debug_line    0x000017fa      0x291 ..\obj\main.o
 
-.debug_str      0x00000000     0x2a1f
- .debug_str     0x00000000      0x266 ..\obj\system_stm32f10x.o
-                                0x2d5 (size before relaxing)
- .debug_str     0x00000266      0x412 ..\obj\stm32f10x_rcc.o
-                                0x600 (size before relaxing)
- .debug_str     0x00000678      0xbcb ..\obj\stm32f10x_tim.o
-                                0xdc3 (size before relaxing)
- .debug_str     0x00001243      0x1b4 ..\obj\misc.o
-                                0x3a4 (size before relaxing)
- .debug_str     0x000013f7      0x531 ..\obj\stm32f10x_adc.o
-                                0x6e1 (size before relaxing)
- .debug_str     0x00001928      0x419 ..\obj\stm32f10x_usart.o
-                                0x676 (size before relaxing)
- .debug_str     0x00001d41      0x4e7 ..\obj\printf.o
-                                0x63a (size before relaxing)
- .debug_str     0x00002228       0xa1 ..\obj\startup_stm32f10x_md.o
-                                0x125 (size before relaxing)
- .debug_str     0x000022c9      0x368 ..\obj\stm32f10x_gpio.o
-                                0x4ff (size before relaxing)
- .debug_str     0x00002631      0x3ee ..\obj\main.o
-                                0xa2f (size before relaxing)
+.debug_str      0x00000000     0x2ad0
+ .debug_str     0x00000000      0x26c ..\obj\system_stm32f10x.o
+                                0x2db (size before relaxing)
+ .debug_str     0x0000026c      0x418 ..\obj\stm32f10x_rcc.o
+                                0x606 (size before relaxing)
+ .debug_str     0x00000684      0xbd1 ..\obj\stm32f10x_tim.o
+                                0xdc9 (size before relaxing)
+ .debug_str     0x00001255      0x1ba ..\obj\misc.o
+                                0x3aa (size before relaxing)
+ .debug_str     0x0000140f      0x537 ..\obj\stm32f10x_adc.o
+                                0x6e7 (size before relaxing)
+ .debug_str     0x00001946      0x41f ..\obj\stm32f10x_usart.o
+                                0x67c (size before relaxing)
+ .debug_str     0x00001d65      0x4eb ..\obj\printf.o
+                                0x646 (size before relaxing)
+ .debug_str     0x00002250       0xa7 ..\obj\startup_stm32f10x_md.o
+                                0x12b (size before relaxing)
+ .debug_str     0x000022f7      0x36e ..\obj\stm32f10x_gpio.o
+                                0x505 (size before relaxing)
+ .debug_str     0x00002665      0x46b ..\obj\main.o
+                                0xab2 (size before relaxing)
 
 .comment        0x00000000       0x6e
  .comment       0x00000000       0x6e ..\obj\system_stm32f10x.o
@@ -599,7 +604,7 @@ OUTPUT(Example_ADC.elf elf32-littlearm)
  .ARM.attributes
                 0x0000022b       0x2d c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strlen-stub.o)
 
-.debug_frame    0x00000000     0x2610
+.debug_frame    0x00000000     0x2698
  .debug_frame   0x00000000       0x98 ..\obj\system_stm32f10x.o
  .debug_frame   0x00000098      0x4f4 ..\obj\stm32f10x_rcc.o
  .debug_frame   0x0000058c      0xe2c ..\obj\stm32f10x_tim.o
@@ -609,6 +614,6 @@ OUTPUT(Example_ADC.elf elf32-littlearm)
  .debug_frame   0x00001ec4      0x2dc ..\obj\printf.o
  .debug_frame   0x000021a0       0x4c ..\obj\startup_stm32f10x_md.o
  .debug_frame   0x000021ec      0x2d0 ..\obj\stm32f10x_gpio.o
- .debug_frame   0x000024bc      0x100 ..\obj\main.o
- .debug_frame   0x000025bc       0x34 c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
- .debug_frame   0x000025f0       0x20 c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strlen-stub.o)
+ .debug_frame   0x000024bc      0x188 ..\obj\main.o
+ .debug_frame   0x00002644       0x34 c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-memset.o)
+ .debug_frame   0x00002678       0x20 c:/coocox/armgnu/5.2 2015q4/bin/../lib/gcc/arm-none-eabi/5.2.1/../../../../arm-none-eabi/lib/armv7-m\libg.a(lib_a-strlen-stub.o)

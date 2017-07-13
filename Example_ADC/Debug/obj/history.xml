@@ -1,34 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <history>
-   <processor signature="arm-none-eabi-gcc 4.9.2 i686-w64-mingw32 -mcpu=cortex-m3 -mthumb -g2 -Wall -O0 -c -DSTM32F103C8 -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -I..\..\..\..\..\..\..\..\..\Coding\Example_ADC\cmsis_boot -I..\..\..\..\..\..\..\..\..\Coding\Example_ADC\stm_lib -I..\..\..\..\..\..\..\..\..\Coding -I..\..\..\..\..\..\..\..\..\Coding\Example_ADC\stm_lib\inc -I..\..\..\..\..\..\..\..\..\Coding\Example_ADC\cmsis -I..\..\..\..\..\..\..\..\..\Coding\Example_ADC">
-      <target file="stm32f10x_adc.o" lastModified="15ce3ab6fc0">
+   <processor signature="arm-none-eabi-gcc 4.9.2 i686-w64-mingw32 -mcpu=cortex-m3 -mthumb -g2 -Wall -O0 -c -DSTM32F103C8 -DSTM32F10X_MD -DUSE_STDPERIPH_DRIVER -D__ASSEMBLY__ -I..\..\..\..\..\..\..\..\..\Coding -I..\..\..\..\..\..\..\..\..\Coding\STM32_Hall_sensor\stm_lib\inc -I..\..\..\..\..\..\..\..\..\Coding\STM32_Hall_sensor\stm_lib -I..\..\..\..\..\..\..\..\..\Coding\STM32_Hall_sensor\cmsis -I..\..\..\..\..\..\..\..\..\Coding\STM32_Hall_sensor\cmsis_boot -I..\..\..\..\..\..\..\..\..\Coding\STM32_Hall_sensor">
+      <target file="stm32f10x_adc.o" lastModified="15d3ba820d3">
          <source file="..\..\..\stm_lib\src\stm32f10x_adc.c" lastModified="15ad43c3540"/>
       </target>
-      <target file="stm32f10x_tim.o" lastModified="15ce3ab6d4e">
+      <target file="stm32f10x_tim.o" lastModified="15d3ba81e2f">
          <source file="..\..\..\stm_lib\src\stm32f10x_tim.c" lastModified="15ad43c3540"/>
       </target>
-      <target file="printf.o" lastModified="15ce3ab6ece">
+      <target file="printf.o" lastModified="15d3ba81fef">
          <source file="..\..\..\stdio\printf.c" lastModified="15ad43c3540"/>
       </target>
-      <target file="system_stm32f10x.o" lastModified="15ce3ab6d96">
+      <target file="system_stm32f10x.o" lastModified="15d3ba81e7a">
          <source file="..\..\..\cmsis_boot\system_stm32f10x.c" lastModified="15ad43c3540"/>
       </target>
-      <target file="main.o" lastModified="15ce3bc1894">
-         <source file="..\..\..\main.c" lastModified="15ce3bc1642"/>
+      <target file="main.o" lastModified="15d3ba81f81">
+         <source file="..\..\..\main.c" lastModified="15d3ba81b4a"/>
       </target>
-      <target file="stm32f10x_gpio.o" lastModified="15ce3ab6e2b">
-         <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="15ad43c3540"/>
-      </target>
-      <target file="stm32f10x_usart.o" lastModified="15ce3ab7032">
+      <target file="stm32f10x_usart.o" lastModified="15d3ba82142">
          <source file="..\..\..\stm_lib\src\stm32f10x_usart.c" lastModified="15ad43c3540"/>
       </target>
-      <target file="stm32f10x_rcc.o" lastModified="15ce3ab6f44">
+      <target file="stm32f10x_gpio.o" lastModified="15d3ba81f13">
+         <source file="..\..\..\stm_lib\src\stm32f10x_gpio.c" lastModified="15ad43c3540"/>
+      </target>
+      <target file="stm32f10x_rcc.o" lastModified="15d3ba82058">
          <source file="..\..\..\stm_lib\src\stm32f10x_rcc.c" lastModified="15ad43c3540"/>
       </target>
-      <target file="startup_stm32f10x_md.o" lastModified="15ce3ab6dcd">
+      <target file="startup_stm32f10x_md.o" lastModified="15d3ba81eb3">
          <source file="..\..\..\cmsis_boot\startup\startup_stm32f10x_md.c" lastModified="15ad43c3540"/>
       </target>
-      <target file="misc.o" lastModified="15ce3ab7081">
+      <target file="misc.o" lastModified="15d3ba82190">
          <source file="..\..\..\stm_lib\src\misc.c" lastModified="15ad43c3540"/>
       </target>
    </processor>
